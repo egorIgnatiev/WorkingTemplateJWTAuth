@@ -103,7 +103,41 @@ namespace JWTAuthTemplate.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
             new ClaimsPrincipal(claimsIdentity),
             new AuthenticationProperties { IsPersistent = true }); //03.01.2025
-            return Ok(); // Return appropriate response, 03.01.2025
+
+            var token = CreateToken(claims.ToList()); //10.01.2025
+            var refreshToken = GenerateRefreshToken(); //10.01.2025
+
+            Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTimeOffset.UtcNow.AddDays(30) // Установите время жизни cookie
+            });
+            // Обновление информации о пользователе с новым refresh токеном (если требуется)
+            user.RefreshToken = refreshToken;
+
+            await _userManager.UpdateAsync(user);
+
+            //return Ok(); // Return appropriate response, 03.01.2025; 10.01.2025
+
+            return Ok(new
+            {
+                JWT = new AuthorizedDTO()
+                {
+                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    /*RefreshToken = refreshToken,*/
+                    //TokenExpiration = token.ValidTo,
+                    //TokenExpiration = DateTime.UtcNow.AddDays(30)
+                },
+                User = new UserDTO()
+                {
+                    Id = user.Id,
+                    Username = user.UserName,
+                    Email = user.Email,
+                    CreateDate = user.CreateDate,
+                }
+            });
 
             /*foreach (var userRole in user.Roles)
             {
