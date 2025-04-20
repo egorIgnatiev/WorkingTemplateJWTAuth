@@ -15,7 +15,7 @@ If need to run only database:
 
 **docker-compose up -d db**
 
-5. Add migrations, use command (if there are mistakes with cycle dependencies, use second command):
+5. Add migrations, use command (if there are mistakes with cycle dependencies, use second):
 
 **dotnet ef database update**
 **dotnet ef database update --project JWTAuthTemplate/JWTAuthTemplate.csproj --startup-project JWTAuthTemplate/JWTAuthTemplate.csproj**

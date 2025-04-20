@@ -138,39 +138,6 @@ namespace JWTAuthTemplate.Controllers
                     CreateDate = user.CreateDate,
                 }
             });
-
-            /*foreach (var userRole in user.Roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, userRole.Role.Name));
-            }
-
-            var token = CreateToken(claims.ToList());
-            var refreshToken = GenerateRefreshToken();
-
-            _ = int.TryParse(_configuration["Jwt:RefreshTokenExpirationDays"], out int refreshTokenExpirationDays);
-            
-            user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(refreshTokenExpirationDays);
-
-            await _userManager.UpdateAsync(user);
-
-
-            return Ok(new
-            {
-                JWT = new AuthorizedDTO()
-                {
-                    Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    RefreshToken = refreshToken,
-                    TokenExpiration = token.ValidTo,
-                },
-                User = new UserDTO()
-                {
-                    Id = user.Id,
-                    Username = user.UserName,
-                    Email = user.Email,
-                    CreateDate = user.CreateDate,
-                }
-            }); */
         }
 
         [HttpPost("Logout")] // 03.01.2025 - all method
