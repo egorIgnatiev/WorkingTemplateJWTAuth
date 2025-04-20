@@ -1,7 +1,7 @@
 ## Notes:
 1. Original template taken from:
 https://github.com/msuddaby/ASPNetCoreJWTAuthTemplate
-2. Docker Desktop v.4.36
+2. Docker Desktop v.4.36 or higher
 
 ## Manual for deploy:
 1. Open Docker Desktop.
@@ -18,6 +18,7 @@ If need to run only database:
 5. Add migrations, use command (if there are mistakes with cycle dependencies, use second command):
 
 **dotnet ef database update**
+
 **dotnet ef database update --project JWTAuthTemplate/JWTAuthTemplate.csproj --startup-project JWTAuthTemplate/JWTAuthTemplate.csproj**
 
 6. Run solution in "https" mode.
