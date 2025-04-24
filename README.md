@@ -1,7 +1,7 @@
 ## Notes:
 1. Original template taken from:
 https://github.com/msuddaby/ASPNetCoreJWTAuthTemplate
-2. Docker Desktop v.4.36
+2. Docker Desktop v.4.36 or higher
 3. Access to Minio:
 http://localhost:9001/login
 
@@ -9,7 +9,7 @@ http://localhost:9001/login
 1. Open Docker Desktop.
 2. Open solution in Visual Studio.
 3. Open solution in terminal.
-4. If there is nessesary to run in docker application and database, use command:
+4. If there is nessesary to run in docker application and databases, use command:
 
 **docker-compose up -d**
 
