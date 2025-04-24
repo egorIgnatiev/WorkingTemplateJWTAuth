@@ -2,6 +2,8 @@
 1. Original template taken from:
 https://github.com/msuddaby/ASPNetCoreJWTAuthTemplate
 2. Docker Desktop v.4.36
+3. Access to Minio:
+http://localhost:9001/login
 
 ## Manual for deploy:
 1. Open Docker Desktop.
@@ -11,13 +13,14 @@ https://github.com/msuddaby/ASPNetCoreJWTAuthTemplate
 
 **docker-compose up -d**
 
-If need to run only database:
+If need to run only databases:
 
-**docker-compose up -d db**
+**docker-compose up -d db minio**
 
 5. Add migrations, use command (if there are mistakes with cycle dependencies, use second command):
 
 **dotnet ef database update**
+
 **dotnet ef database update --project JWTAuthTemplate/JWTAuthTemplate.csproj --startup-project JWTAuthTemplate/JWTAuthTemplate.csproj**
 
 6. Run solution in "https" mode.

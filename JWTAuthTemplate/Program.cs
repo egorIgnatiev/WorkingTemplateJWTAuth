@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using JWTAuthTemplate.DTO.Identity;
+using JWTAuthTemplate.Extensions;
 
 namespace JWTAuthTemplate
 {
@@ -33,6 +35,9 @@ namespace JWTAuthTemplate
                                .AllowAnyHeader();
                     });
             });
+
+            builder.Services.Configure<MinioSettingsDTO>(builder.Configuration.GetSection("MinioSettings"));
+            builder.Services.AddSingleton<MinioService>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
